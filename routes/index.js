@@ -1,19 +1,18 @@
 const router = require('koa-router')()
+const path = require('path')
+const send = require('koa-send')
 
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
-    title: 'Hello Koa 2!'
+    title: 'MagicBox',
   })
 })
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
-
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
+router.get('/download/:fileName', async (ctx) => {
+  const fileName = ctx.params.fileName
+  const pathName = `upload/${fileName}`
+  ctx.attachment(pathName)
+  await send(ctx, pathName)
 })
 
 module.exports = router

@@ -4,12 +4,12 @@ const config = require('./config')
 const { execSync } = require('child_process')
 
 const Util = {
-  request: (type, params = {}) => {
+  request: (url, type, params = {}) => {
     return new Promise((resolve, reject) => {
       request(
         {
           method: 'get',
-          uri: config[type],
+          uri: config[type] + url,
           qs: params,
           json: true, //设置返回的数据为json
         },
