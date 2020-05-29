@@ -1,6 +1,5 @@
 const config = {
-  dbUrl: 'mongodb://47.98.195.39:27017',
-  dbName: 'wangl',
+  dbUrl: 'mongodb://47.98.195.39:27017/wangl',
   douyu: 'http://capi.douyucdn.cn/api/v1/live',
   egame: 'https://share.egame.qq.com/cgi-bin/pgg_live_async_fcgi',
   huya: 'https://www.huya.com/cache.php',

@@ -10,7 +10,7 @@ router.get('/', async (ctx, next) => {
 
 router.get('/download/:fileName', async (ctx) => {
   const fileName = ctx.params.fileName
-  const pathName = `upload/${fileName}`
+  const pathName = `download/${fileName}`
   ctx.attachment(pathName)
   await send(ctx, pathName)
 })

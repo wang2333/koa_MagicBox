@@ -1,7 +1,55 @@
 const router = require('koa-router')()
 const Util = require('../module/Util')
+const LiveType = require('../module/schema/LiveType')
 
 router.prefix('/live')
+
+const insert = (model, data) => {
+  return new Promise((resolve, reject) => {
+    const name = new model(data)
+    name.save((err, res) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(res)
+      }
+    })
+  })
+}
+const find = (model, data) => {
+  return new Promise((resolve, reject) => {
+    var wherestr = data
+    model.find(wherestr, (err, res) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(res)
+      }
+    })
+  })
+}
+const update = (model, query, updatestr) => {
+  return new Promise((resolve, reject) => {
+    var query = query
+    var updatestr = updatestr
+    model.findOneAndUpdate(query, updatestr, (err, res) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(res)
+      }
+    })
+  })
+}
+
+router.get('/type', async (ctx) => {
+  // let res = await update()
+  // let res = await insert(LiveType, { type: '企鹅', value: 'egame' })
+  let res = await find(LiveType, {})
+  ctx.body = {
+    data: res,
+  }
+})
 
 router.get('/list', async (ctx) => {
   const query = ctx.query

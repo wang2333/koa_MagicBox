@@ -2,7 +2,6 @@ const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
-const send = require('koa-send')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
@@ -28,10 +27,6 @@ app.use(
     extension: 'pug',
   })
 )
-// send
-// app.use(async (ctx) => {
-//   await send(ctx, ctx.path, { root: __dirname + '/public' })
-// })
 
 // logger
 app.use(async (ctx, next) => {
